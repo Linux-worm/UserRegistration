@@ -1,0 +1,55 @@
+﻿@model UserRegistration.Models.UserModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>UserModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" asp-controller="user">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                @Html.TextBoxFor(i => i.FullName, new {@class="form-control"})
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                @Html.TextBoxFor(i => i.UserName, new { @class = "form-control" })
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                @Html.TextBoxFor(i => i.Password, new { @class = "form-control" })
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                @Gender.Male.ToString() @Html.RadioButtonFor(i => i.Gender, Gender.Male.ToString(), new { @class = "form-control" })
+                @Gender.Female.ToString() @Html.RadioButtonFor(i => i.Gender, Gender.Female.ToString(), new { @class = "form-control" })
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                @Html.TextBoxFor(i => i.DateOfBirth, new { @class = "form-control" })
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
